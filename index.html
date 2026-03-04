@@ -22,9 +22,9 @@ console.warn = (...args) => {
 <div id="root"></div>
 <script type="text/babel">
 const { useState, useCallback } = React;
-const sCard={...sCard};
-const sTa={...sTa};
-const sSm={...sSm};
+const sCard={background:"#0d0d1f",border:"1px solid #1e1e3a",borderRadius:12,padding:14,marginBottom:14};
+const sTa={width:"100%",background:"#111827",border:"1px solid #2d2d4e",borderRadius:8,padding:10,color:"#e2e8f0",fontSize:12,resize:"vertical",lineHeight:1.6,boxSizing:"border-box"};
+const sSm={fontSize:10,color:"#4b5563"};
 
 const COLORS      = [”#ffffff”,”#222222”,”#e74c3c”,”#2563eb”,”#facc15”,”#16a34a”,”#f97316”,”#ec4899”,”#7c3aed”];
 const COLORS_TEXT = [”#111111”,”#ffffff”,”#ffffff”,”#ffffff”,”#111111”,”#ffffff”,”#ffffff”,”#111111”,”#ffffff”];
@@ -73,8 +73,10 @@ cur.push(n);
 if (cur.length > 0) { groups.push(cur); cur=[]; }
 } else if (cur.length > 0) {
 
+```
   break;
 }
+```
 
 }
 if (cur.length > 0) groups.push(cur);
@@ -107,6 +109,7 @@ let grade=“A2”,style=“両”;
 const gm=infoLine.match(/([SA][12]?|SS|B|L)([SA][12]?|SS|B|L)/); if(gm) grade=gm[2];
 const sm=infoLine.match(/[逃捲差追両自]/); if(sm) style=sm[0];
 
+```
 const scoreEstimated = rawScore <= 0;
 const score = scoreEstimated ? (GRADE_DEFAULT_SCORE[grade]||75) : rawScore;
 const prefM=infoLine.match(/^([^\s　]+)/); const pref=prefM?prefM[1]:"";
@@ -114,6 +117,7 @@ racers.push({ num:carNum,waku,name:nameLine.replace(/\s+/g," ").trim(),
   grade,style,score,scoreEstimated,pref,
   escape:parseInt(cells[1])||0,capture:parseInt(cells[2])||0,
   diff:parseInt(cells[3])||0,mark:parseInt(cells[4])||0,back:parseInt(cells[5])||0 });
+```
 
 }
 return racers;
@@ -129,6 +133,7 @@ const isInfo   = s => /[SABK][12]?/.test(s) && /歳|期/.test(s);
 
 for (let i=0; i<rows.length-10; i++) {
 
+```
 if (!isCarNum(rows[i])) continue;
 const carNum = parseInt(rows[i]);
 if (racers.find(r=>r.num===carNum)) continue;
@@ -172,6 +177,7 @@ racers.push({ num:carNum, waku, name:name.trim(), grade, style, score:finalScore
   escape, capture, diff, mark, back:0 });
 
 i = styleIdx + 4;
+```
 
 }
 return racers;
@@ -218,6 +224,7 @@ const combo=lines[i+1]+”-”+lines[i+2];
 const odds=parseFloat(lines[i+3]);
 if(!isNaN(odds)) {
 
+```
     map["2車単_"+combo]=odds;
     map["2車複_"+lines[i+1]+"-"+lines[i+2]]=odds;
     map["2車複_"+lines[i+2]+"-"+lines[i+1]]=odds;
@@ -226,6 +233,7 @@ if(!isNaN(odds)) {
   }
   i+=4;
 } else { i++; }
+```
 
 }
 if(parsed2>0) return map;
@@ -284,11 +292,4 @@ const isCarNum=s=>/^[1-9]$/.test(s);
 const isInfo=s=>/[SA][12]?/.test(s)&&/歳|期/.test(s);
 const isName=s=>s.length>=2&&/[一-龯ぁ-んァ-ン]/.test(s)&&!/歳|期/.test(s);
 const POS=[“自力”,“先行”,“逃げ”,“捲り”,“主導権”,“好調”,“感じいい”,“悪くない”,“噛み合”,“動けて”,“積極”,“強気”,“自信”,“行く”,“頑張”,“万全”];
-const NEG=[“おんぶ”,“番手”,“三番手”,“マーク”,“模索”,“方向性”,“走れなかった”,“感じていない”,“徐々に”,“疲れ”,“コメントはありません”,“ありません”,“フレーム”,“思ったように”];
-const WP=[“悪くはない”,“そこそこ”,“問題ない”,“噛み合ってきた”,“合ってきた”];
-let i=0;
-while(i<lines.length){
-if(!isCarNum(lines[i])){i++;continue;}
-const cn=parseInt(lines[i]);
-if(i+2>=lines.length||!isName(lines[i+1])||!isInfo(lines[i+2])){i++;continue;}
-i+=
+const NEG=[“おんぶ”,“番手”,“三番手”,“マーク”,“模索”,“方向性”,“走れなかった”,“感じていない”,“徐々に”,“疲れ”,“コメントは
