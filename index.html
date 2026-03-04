@@ -4,11 +4,15 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>Keirin</title>
+<title>Keirin Debug</title>
 </head>
-<body style="margin:0">
-<div id="root"></div>
+<body>
+<div id="err" style="color:red;padding:10px;font-family:sans-serif"></div>
 <script>
+window.onerror = function(msg,src,line,col,err) {
+  document.getElementById("err").textContent = "ERROR: "+msg+" (line "+line+")";
+  return true;
+};
 try {
 const sCard={background:"#0d0d1f",border:"1px solid #1e1e3a",borderRadius:12,padding:14,marginBottom:14};
 const sTa={width:"100%",background:"#111827",border:"1px solid #2d2d4e",borderRadius:8,padding:10,color:"#e2e8f0",fontSize:12,resize:"vertical",lineHeight:1.6,boxSizing:"border-box"};
@@ -272,9 +276,4 @@ res[cn]={multiplier:mult,label,recentPositions:recent,dnf};
 return res;
 }
 
-function parsePreRaceComments(text){
-const res={};
-if(!text||!text.trim())return res;
-const lines=text.split(”\n”).map(l=>l.trim());
-const isCarNum=s=>/^[1-9]$/.test(s);
-const isInfo=s=>/[SA][12]?/.test(s)&&/\u6B73|\u67
+function parsePreRaceComment
